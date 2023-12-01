@@ -18,13 +18,11 @@ struct AddView: View {
     @State private var type = "Personal"
     @State private var amount = 0.0
 
-    let types = ["Business", "Personal"]
-
     var body: some View {
         NavigationStack {
             Form {
                 Picker("Type", selection: $type) {
-                    ForEach(types, id: \.self) {
+                    ForEach(Expense.types, id: \.self) {
                         Text($0)
                     }
                 }

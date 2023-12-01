@@ -10,6 +10,8 @@ import SwiftData
 
 @Model
 class Expense {
+    static var types = ["Business", "Personal"]
+    
     var name: String
     var type: String
     var amount: Double
