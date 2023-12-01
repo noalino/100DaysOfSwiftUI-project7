@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5022D6532B1A0FFE0099BFD0 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5022D6522B1A0FFE0099BFD0 /* Expense.swift */; };
+		5022D6552B1A31980099BFD0 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5022D6542B1A31980099BFD0 /* ExpensesView.swift */; };
 		50CC68282B150E3900DDCC10 /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC68272B150E3900DDCC10 /* iExpenseApp.swift */; };
 		50CC682A2B150E3900DDCC10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC68292B150E3900DDCC10 /* ContentView.swift */; };
 		50CC682C2B150E3A00DDCC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50CC682B2B150E3A00DDCC10 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		5022D6522B1A0FFE0099BFD0 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		5022D6542B1A31980099BFD0 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
 		50CC68242B150E3900DDCC10 /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50CC68272B150E3900DDCC10 /* iExpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iExpenseApp.swift; sourceTree = "<group>"; };
 		50CC68292B150E3900DDCC10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 			children = (
 				50CC68272B150E3900DDCC10 /* iExpenseApp.swift */,
 				50CC68292B150E3900DDCC10 /* ContentView.swift */,
+				5022D6542B1A31980099BFD0 /* ExpensesView.swift */,
 				5022D6522B1A0FFE0099BFD0 /* Expense.swift */,
 				50CC68352B150EED00DDCC10 /* AddView.swift */,
 				50CC682B2B150E3A00DDCC10 /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 				5022D6532B1A0FFE0099BFD0 /* Expense.swift in Sources */,
 				50CC682A2B150E3900DDCC10 /* ContentView.swift in Sources */,
 				50CC68282B150E3900DDCC10 /* iExpenseApp.swift in Sources */,
+				5022D6552B1A31980099BFD0 /* ExpensesView.swift in Sources */,
 				50CC68362B150EED00DDCC10 /* AddView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

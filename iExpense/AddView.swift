@@ -12,11 +12,11 @@ struct AddView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
 
+    @Query var expenses: [Expense]
+
     @State private var name = "Expense"
     @State private var type = "Personal"
     @State private var amount = 0.0
-
-    var expenses: [Expense]
 
     let types = ["Business", "Personal"]
 
@@ -50,8 +50,5 @@ struct AddView: View {
 }
 
 #Preview {
-    let expense1 = Expense(name: "Expense 1", type: "Personal", amount: 10)
-    let expense2 = Expense(name: "Expense 2", type: "Business", amount: 150)
-    return AddView(expenses: [expense1, expense2])
-        .modelContainer(for: Expense.self)
+    AddView()
 }

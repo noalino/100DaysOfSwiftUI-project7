@@ -44,50 +44,36 @@ struct ExpenseItemView: View {
 }
 
 struct ContentView: View {
-    @Environment(\.modelContext) var modelContext
-    @Query var expenses: [Expense]
-
-    var personalExpenses: [Expense] {
-        expenses.filter { $0.type == "Personal" }
-    }
-
-    var businessExpenses: [Expense] {
-        expenses.filter { $0.type == "Business" }
-    }
+    @State private var sortOrder = [
+        SortDescriptor(\Expense.name),
+        SortDescriptor(\Expense.amount)
+    ]
 
     var body: some View {
         NavigationStack {
-            List {
-                Section("Personal") {
-                    ForEach(personalExpenses) { item in
-                        ExpenseItemView(item: item)
+            ExpensesView(sortOrder: sortOrder)
+                .navigationTitle("iExpense")
+                .toolbar {
+                    NavigationLink("Add expense") {
+                        AddView()
                     }
-                    .onDelete(perform: { offsets in
-                        removeExpenses(at: offsets, from: personalExpenses)
-                    })
-                }
 
-                Section("Business") {
-                    ForEach(businessExpenses) { item in
-                        ExpenseItemView(item: item)
+                    Menu("Sort", systemImage: "arrow.up.arrow.down") {
+                        Picker("Sort", selection: $sortOrder) {
+                            Text("Sort by Name")
+                                .tag([
+                                    SortDescriptor(\Expense.name),
+                                    SortDescriptor(\Expense.amount)
+                                ])
+
+                            Text("Sort by Amount")
+                                .tag([
+                                    SortDescriptor(\Expense.amount),
+                                    SortDescriptor(\Expense.name)
+                                ])
+                        }
                     }
-                    .onDelete(perform: { offsets in
-                        removeExpenses(at: offsets, from: businessExpenses)
-                    })
                 }
-            }
-            .navigationTitle("iExpense")
-            .toolbar {
-                NavigationLink("Add expense") {
-                    AddView(expenses: expenses)
-                }
-            }
-        }
-    }
-
-    func removeExpenses(at offsets: IndexSet, from expenses: [Expense]) {
-        for index in offsets {
-            modelContext.delete(expenses[index])
         }
     }
 }
