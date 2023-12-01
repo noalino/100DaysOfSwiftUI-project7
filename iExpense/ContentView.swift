@@ -8,41 +8,6 @@
 import SwiftData
 import SwiftUI
 
-struct AmountFormat: ViewModifier {
-    let amount: Double
-
-    func body(content: Content) -> some View {
-        content
-            .font(amount < 10 ? .title : amount < 100 ? .title2 : .title3)
-    }
-}
-
-extension View {
-    func amountFormat(amount: Double) -> some View {
-        modifier(AmountFormat(amount: amount))
-    }
-}
-
-struct ExpenseItemView: View {
-    let item: Expense
-
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(item.name)
-                    .font(.headline)
-
-                Text(item.type)
-            }
-
-            Spacer()
-
-            Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
-                .amountFormat(amount: item.amount)
-        }
-    }
-}
-
 struct ContentView: View {
     @State private var sortOrder = [
         SortDescriptor(\Expense.name),
