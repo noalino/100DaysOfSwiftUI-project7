@@ -22,28 +22,35 @@ struct ExpensesView: View {
     
     var body: some View {
         List {
-            Section("Personal") {
-                ForEach(personalExpenses) { item in
-                    ExpenseItemView(item: item)
+            if businessExpenses.count > 0 {
+                Section("Business") {
+                    ForEach(businessExpenses) { item in
+                        ExpenseItemView(item: item)
+                    }
+                    .onDelete(perform: { offsets in
+                        removeExpenses(at: offsets, from: businessExpenses)
+                    })
                 }
-                .onDelete(perform: { offsets in
-                    removeExpenses(at: offsets, from: personalExpenses)
-                })
             }
-
-            Section("Business") {
-                ForEach(businessExpenses) { item in
-                    ExpenseItemView(item: item)
+            
+            if personalExpenses.count > 0 {
+                Section("Personal") {
+                    ForEach(personalExpenses) { item in
+                        ExpenseItemView(item: item)
+                    }
+                    .onDelete(perform: { offsets in
+                        removeExpenses(at: offsets, from: personalExpenses)
+                    })
                 }
-                .onDelete(perform: { offsets in
-                    removeExpenses(at: offsets, from: businessExpenses)
-                })
             }
         }
     }
 
-    init(sortOrder: [SortDescriptor<Expense>]) {
-        _expenses = Query(sort: sortOrder)
+    init(filterType: String, sortOrder: [SortDescriptor<Expense>]) {
+        let types = Expense.types
+        _expenses = Query(filter: #Predicate<Expense> { expense in
+            !types.contains(filterType) || expense.type == filterType
+        }, sort: sortOrder)
     }
 
     func removeExpenses(at offsets: IndexSet, from expenses: [Expense]) {
@@ -54,5 +61,5 @@ struct ExpensesView: View {
 }
 
 #Preview {
-    ExpensesView(sortOrder: [SortDescriptor(\Expense.name)])
+    ExpensesView(filterType: "All", sortOrder: [SortDescriptor(\Expense.name)])
 }

@@ -9,6 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @State private var filterType = "All"
     @State private var sortOrder = [
         SortDescriptor(\Expense.name),
         SortDescriptor(\Expense.amount)
@@ -16,11 +17,24 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            ExpensesView(sortOrder: sortOrder)
+            ExpensesView(filterType: filterType, sortOrder: sortOrder)
                 .navigationTitle("iExpense")
                 .toolbar {
                     NavigationLink("Add expense") {
                         AddView()
+                    }
+
+                    Menu("Filter", systemImage: "line.3.horizontal.decrease.circle") {
+                        Picker("Filter", selection: $filterType) {
+                            Text("All")
+                                .tag("All")
+
+                            Text("Business")
+                                .tag("Business")
+
+                            Text("Personal")
+                                .tag("Personal")
+                        }
                     }
 
                     Menu("Sort", systemImage: "arrow.up.arrow.down") {
